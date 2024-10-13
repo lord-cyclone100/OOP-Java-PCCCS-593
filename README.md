@@ -267,3 +267,139 @@ public class Test{
     }
 }
 ```
+
+#### Write a Java Program to swap two numbers using the bitwise operator.
+
+```java
+import java.util.Scanner;
+
+public class Test{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter 1st number:");
+        int num1 = scanner.nextInt();
+        System.out.println("Enter 2nd number:");
+        int num2 = scanner.nextInt();
+        System.out.println("Before swapping : "+ num1 + " and " + num2);
+        num1 = num1 ^ num2;
+        num2 = num1 ^ num2;
+        num1 = num1 ^ num2;
+        System.out.println("After swapping : "+ num1 + " and " + num2);
+    }
+}
+```
+
+#### Write a java program to check leap year
+
+```java
+import java.util.Scanner;
+
+public class Test{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a year:");
+        int year = scanner.nextInt();
+        if(year%400 == 0){
+            System.out.println(year+" is a leap year");
+        }
+        else if(year%100 == 0){
+            System.out.println(year+" is not a leap year");
+        }
+        else if(year%4 == 0){
+            System.out.println(year+" is a leap year");
+        }
+        else{
+            System.out.println(year+" is not a leap year");
+        }
+    }
+}
+```
+
+#### Write a Java Program to multiply a number by 2 and divide the same number by 4 using shift operator.
+
+```java
+import java.util.Scanner;
+
+public class Test{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a num:");
+        int num = scanner.nextInt();
+        System.out.println("Multiplied by 2 : " + (num << 1));
+        System.out.println("Divided by 4 : " + (num >> 2));
+    }
+}
+```
+
+#### Write a program to find the facrorial of an integer number using recursion
+
+```java
+import java.util.Scanner;
+
+public class Test{
+    static int findFactorial(int num){
+        int fact = 1;
+        if(num == 1 || num == 0){
+            return 1;
+        }
+        else{
+            return num*findFactorial(num-1);
+        }
+    }
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a number");
+        int num = scanner.nextInt();
+        System.out.println("Factorial of "+num+" : "+findFactorial(num));
+    }
+}
+```
+
+#### Write a program to find the factorial of a given integer number using dynamic programming.
+
+```java
+import java.util.Scanner;
+
+public class Test{
+    static int findFactorial(int num){
+        int arr[] = new int[num+1];
+        for(int i=0;i<=num;i++){
+            arr[i] = 1;
+        }
+        for(int i=1;i<=num;i++){
+            arr[i] = i * arr[i-1];
+        }
+        return arr[num];
+    }
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a number");
+        int num = scanner.nextInt();
+        System.out.println("Factorial of "+num+" : "+findFactorial(num));
+    }
+}
+```
+
+#### Write a Program of Sum of Series (1+x+x^2+x^3+x^4+............ up to n-th terms).
+
+```java
+import java.util.Scanner;
+
+public class Test{
+    static int findSeriesSum(int x,int i){
+        return (int)Math.pow(x,i);
+    }
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the value of n: ");
+        int n = scanner.nextInt();
+        System.out.println("Enter the value of x: ");
+        int x = scanner.nextInt();
+        int sum = 0;
+        for(int i=0;i<=n;i++){
+            sum += findSeriesSum(x,i);
+        }
+        System.out.println("Sum of the series is: "+sum);
+    }
+}
+```
