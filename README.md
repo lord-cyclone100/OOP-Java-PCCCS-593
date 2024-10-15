@@ -457,7 +457,7 @@ public class Test{
 }
 ```
 
-#### Write a program to find Area and Circumference of Cylinder Using Constructors - Keyboard Input or Command Line Input.
+#### Write a program to find Area and Volume of Cylinder Using Constructors - Keyboard Input or Command Line Input.
 
 ###### Keyboard Input
 
@@ -642,6 +642,197 @@ public class Test{
         demo.greet(demo);
         Assignment asmnt = new Assignment();
         demo.brother(asmnt);
+    }
+}
+```
+
+#### Create a class; put a method inside this class which will return a class reference return same class and/or different class object.
+
+```java
+class Tutorial{
+    void namaskar(){
+        System.out.println("Nice to meet you");
+    }
+}
+
+class Demo{
+    void greet(){
+        System.out.println("Hello World!");
+    }
+    Demo method(){
+        return this;
+    }
+    Tutorial tutor(){
+        return new Tutorial();
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+        Demo demo = new Demo();
+        Demo d = demo.method();
+        d.greet();
+        Tutorial tutorial = demo.tutor();
+        tutorial.namaskar();
+    }
+}
+```
+
+#### Write a JAVA Program to make a Student class with proper attributes like roll no, name, stream, and college.
+
+```java
+import java.util.Scanner;
+
+class Student{
+    String name;
+    long roll;
+    String stream;
+    String collegeName;
+
+    Student(String name, long roll, String stream, String collegeName){
+        this.name = name;
+        this.roll = roll;
+        this.stream = stream;
+        this.collegeName = collegeName;
+    }
+
+    void showDetails(){
+        System.out.println("Name: "+name);
+        System.out.println("Roll: "+roll);
+        System.out.println("Stream: "+stream);
+        System.out.println("College Name: "+collegeName);
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter student name:");
+        String name = scanner.nextLine();
+        System.out.println("Enter student roll:");
+        long roll = scanner.nextLong();
+        System.out.println("Enter student stream:");
+        String stream = scanner.next();
+        System.out.println("Enter college name:");
+        String collegeName = scanner.next();
+
+        Student student = new Student(name, roll, stream, collegeName);
+        student.showDetails();
+    }
+}
+```
+
+#### Design a class to represent a Bank Account. Include the following things:
+##### Fields
++ Name of the depositor
++ Account number
++ Type of account
++ Balance amount in the account 
+##### Methods
++ To assign initial values
++ To deposit an amount
++ To withdraw an amount after checking balance
++ To display the name and balance
+
+```java
+import java.util.Scanner;
+
+class Bank{
+    String depositorName;
+    long accountNumber;
+    String accountType;
+    long balanceAmount;
+
+    Bank(String depositorName, long accountNumber, String accountType, long balanceAmount){
+        this.depositorName = depositorName;
+        this.accountNumber = accountNumber;
+        this.accountType = accountType;
+        this.balanceAmount = balanceAmount;
+        System.out.println("Account created");
+    }
+
+    void depositAmount(long amount){
+        System.out.println("Current balance: "+balanceAmount);
+        if(amount <= 0){
+            System.out.println("Please enter a valid amount");
+        }
+        else{
+            balanceAmount += amount;
+            System.out.println(amount + " deposited successfully");
+            System.out.println("New balance: "+ balanceAmount);
+        }
+    }
+
+    void withdrawAmount(long amount){
+        System.out.println("Current balance: "+balanceAmount);
+        if(amount <= 0){
+            System.out.println("Please enter a valid amount");
+        }
+        else if(amount > balanceAmount){
+            System.out.println("Insufficient balance");
+        }
+        else{
+            balanceAmount -= amount;
+            System.out.println(amount + " withdrawn successfully");
+            System.out.println("New balance: "+ balanceAmount);
+        }
+    }
+
+    void checkBalance(){
+        System.out.println("Name: "+depositorName);
+        System.out.println("Current Balance: "+balanceAmount);
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your name:");
+        String name = scanner.nextLine();
+        System.out.println("Enter account number:");
+        long accNumber = scanner.nextLong();
+        System.out.println("Enter account type:");
+        String accType = scanner.next();
+        System.out.println("Enter initial Deposit amount:");
+        long depositAmt = scanner.nextLong();
+
+        Bank bank = new Bank(name, accNumber, accType, depositAmt);
+        int choice;
+        do{
+            System.out.println("What would you like to do");
+            System.out.println("1.) Deposit");
+            System.out.println("2.) Withdraw");
+            System.out.println("3.) Check Balance");
+            System.out.println("0.) Exit");
+            System.out.println("Enter your choice");
+            choice = scanner.nextInt();
+            switch(choice){
+                case 1:
+                    System.out.println("Enter amount to deposit:");
+                    long depoAmt = scanner.nextLong();
+                    bank.depositAmount(depoAmt);
+                    break;
+                
+                case 2:
+                    System.out.println("Enter amount to withdraw:");
+                    long withAmt = scanner.nextLong();
+                    bank.withdrawAmount(withAmt);
+                    break;
+
+                case 3:
+                    bank.checkBalance();
+                    break;
+
+                case 0:
+                    System.out.println("Thanks for using our service");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice");
+                    break;
+            }
+        }
+        while(choice != 0);
     }
 }
 ```
