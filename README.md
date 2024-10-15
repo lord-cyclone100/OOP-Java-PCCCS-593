@@ -1,5 +1,6 @@
 # OOP-Java-PCCCS-593
 
+## Assignment-1
 
 #### Write a program to print your name.
 
@@ -400,6 +401,247 @@ public class Test{
             sum += findSeriesSum(x,i);
         }
         System.out.println("Sum of the series is: "+sum);
+    }
+}
+```
+
+## Assignment-2
+
+#### Add two numbers by taking input using Command Line Input, Scanner class and BufferedReader class.
+
+###### Using Command Line Arguments
+
+```java
+public class Test{
+    public static void main(String[] args){
+        System.out.println("Sum : "+ (Integer.parseInt(args[0]) + Integer.parseInt(args[1])));
+    }
+}
+```
+
+###### Using Scanner class
+
+```java
+import java.util.Scanner;
+
+public class Test{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter 1st number: ");
+        int n1 = scanner.nextInt();
+        System.out.println("Enter 2nd number: ");
+        int n2 = scanner.nextInt();
+        System.out.println("Sum : "+ (n1 + n2));
+    }
+}
+```
+
+###### Using BufferedReader class
+
+```java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Test{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Enter 1st number : ");
+        int n1 = Integer.parseInt(br.readLine());
+
+        System.out.println("Enter 2nd number : ");
+        int n2 = Integer.parseInt(br.readLine());
+        
+        System.out.println("Sum : "+ (n1+n2));
+    }
+}
+```
+
+#### Write a program to find Area and Circumference of Cylinder Using Constructors - Keyboard Input or Command Line Input.
+
+###### Keyboard Input
+
+```java
+import java.util.Scanner;
+
+class Cylinder{
+    double radius;
+    double height;
+    Cylinder(double radius, double height){
+        this.radius = radius;
+        this.height = height;
+        System.out.println("Volume of cylinder : " + (Math.PI * radius * radius * height));
+        System.out.println("Surface Area of cylinder : " + (2 * Math.PI * radius * (radius + height)));
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter radius of cylinder : ");
+        double r = scanner.nextDouble();
+        System.out.println("Enter height of cylinder : ");
+        double h = scanner.nextDouble();
+
+        Cylinder cylinder = new Cylinder(r,h);
+
+    }
+}
+```
+
+###### Using Command Line Arguments
+
+```java
+class Cylinder{
+    double radius;
+    double height;
+    Cylinder(double radius, double height){
+        this.radius = radius;
+        this.height = height;
+        System.out.println("Volume of cylinder : " + (Math.PI * radius * radius * height));
+        System.out.println("Surface Area of cylinder : " + (2 * Math.PI * radius * (radius + height)));
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+        double r = Integer.parseInt(args[0]);
+        double h = Integer.parseInt(args[1]);
+        Cylinder cylinder = new Cylinder(r,h);
+
+    }
+}
+```
+
+#### Write a program to find Area and Volume of Cone Using Constructors - Keyboard Input or Command Line Input.
+
+###### Using Keyboard Inputs
+
+```java
+import java.util.Scanner;
+
+class Cone{
+    double radius;
+    double height;
+    Cone(double radius, double height){
+        this.radius = radius;
+        this.height = height;
+        System.out.println("Volume of cone : " + ((1.0/3.0) * Math.PI * radius * radius * height));
+        double l = Math.sqrt(Math.pow(radius,2) + Math.pow(height,2));
+        System.out.println("Surface Area of cone : " + (Math.PI * radius * (radius + l)));
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter radius of cone : ");
+        double r = scanner.nextDouble();
+        System.out.println("Enter height of cone : ");
+        double h = scanner.nextDouble();
+        Cone cone = new Cone(r,h);
+    }
+}
+```
+
+###### Using Command Line Arguments
+
+```java
+class Cone{
+    double radius;
+    double height;
+    Cone(double radius, double height){
+        this.radius = radius;
+        this.height = height;
+        System.out.println("Volume of cone : " + ((1.0/3.0) * Math.PI * radius * radius * height));
+        double l = Math.sqrt(Math.pow(radius,2) + Math.pow(height,2));
+        System.out.println("Surface Area of cone : " + (Math.PI * radius * (radius + l)));
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+        double r = Integer.parseInt(args[0]);
+        double h = Integer.parseInt(args[1]);
+        Cone cone = new Cone(r,h);
+    }
+}
+```
+
+#### Create a class First, make instance variable [int x], method [void show ()] and also put main method inside that class and use the instance variable and method from main.
+
+```java
+public class First{
+    int x = 10;
+    void show(){
+        System.out.println("Hello World");
+    }
+    public static void main(String[] args){
+        First first = new First();
+        System.out.println(first.x);
+        first.show();
+    }
+}
+```
+
+#### Create a class; make its instance variable and method. Use them from main, declared in different class.
+
+```java
+class Demo{
+    int x = 10;
+    void show(){
+        System.out.println("Hello World");
+    }
+}
+
+class Task{
+    public static void main(String[] args) {
+        Demo d1 = new Demo();
+        System.out.println(d1.x);
+        d1.show();
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+        Demo d2 = new Demo();
+        System.out.println(d2.x);
+        d2.show();
+    }
+}
+```
+
+#### Create a class, make method inside it and pass object as parameter of this method. (a) pass same class’s object, (b) pass different class’s object
+
+```java
+class Assignment{
+    void meet(){
+        System.out.println("Hey There");
+    }
+}
+
+class Demo{
+    void show(){
+        System.out.println("Hello World");
+    }
+
+    void greet(Demo d){
+        d.show();
+    }
+
+    Assignment a = new Assignment();
+
+    void brother(Assignment a){
+        a.meet();
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+        Demo demo = new Demo();
+        demo.greet(demo);
+        Assignment asmnt = new Assignment();
+        demo.brother(asmnt);
     }
 }
 ```
