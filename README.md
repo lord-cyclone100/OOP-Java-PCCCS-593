@@ -836,3 +836,259 @@ public class Test{
     }
 }
 ```
+
+#### Create a class and test if method overloading holds good for return type of method or not.
+
+```java
+class Demo{
+    int addValues(int a, int b){
+        return a+b;
+    }
+
+    double addValues(double a, double b){
+        return a+b;
+    }
+
+    // void addValues(int a, int b){
+    //     System.out.println (a+b);
+    // }
+}
+
+public class Test{
+    public static void main(String[] args){
+        Demo demo = new Demo();
+        System.out.println(demo.addValues(2,3));
+        // demo.addValues(2, 3);
+    }
+}
+```
+
+#### Overload the constructors for class Box for cube and cone and also display its volume.
+
+```java
+import java.util.Scanner;
+
+class Box{
+    double side;
+    double height;
+    double radius;
+
+    Box(double side){
+        this.side = side;
+        System.out.println("Volume of cube : "+(side*side));
+    }
+
+    Box(double radius, double height){
+        this.radius = radius;
+        this.height = height;
+        System.out.println("Volume of cone : "+((1.0/3.0)*Math.PI*radius*radius*height));
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter side : ");
+        double side = scanner.nextDouble();
+        System.out.println("Enter radius : ");
+        double radius = scanner.nextDouble();
+        System.out.println("Enter height : ");
+        double height = scanner.nextDouble();
+        
+        Box cube = new Box(side);
+
+        Box cone = new Box(radius, height);
+    }
+}
+```
+
+#### Do the previous problem using method overloading
+
+```java
+import java.util.Scanner;
+
+class Box{
+    void findVolume(double side){
+        System.out.println("Volume of cube : "+(side*side));
+    }
+
+    void findVolume(double radius, double height){
+        System.out.println("Volume of cone : "+((1.0/3.0)*Math.PI*radius*radius*height));
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter side : ");
+        double side = scanner.nextDouble();
+        System.out.println("Enter radius : ");
+        double radius = scanner.nextDouble();
+        System.out.println("Enter height : ");
+        double height = scanner.nextDouble();
+        
+        Box box = new Box();
+        box.findVolume(side);
+        box.findVolume(radius, height);
+    }
+}
+```
+
+#### Create a class EMP having instance variable name and id. Create its subclass (say Scientist) which has instance variable no_of_publication and experience. Now create its subclass, say Dscientist which has instance variable award. Put a method: public String toString () { } in every class where you describe about the class and from main create object of each class and print each object.
+
+```java
+class EMP {
+    String name;
+    int id;
+
+    EMP(String name, int id) {
+        this.name = name;
+        this.id = id;
+    }
+
+    public String toString() {
+        return "EMP [Name: " + name + ", ID: " + id + "]";
+    }
+}
+
+class Scientist extends EMP {
+    int no_of_publication;
+    int experience;
+
+    Scientist(String name, int id, int no_of_publication, int experience) {
+        super(name, id);
+        this.no_of_publication = no_of_publication;
+        this.experience = experience;
+    }
+
+    public String toString() {
+        return "Scientist [Name: " + name + ", ID: " + id + ", Publications: " + no_of_publication + ", Experience: " + experience + " years]";
+    }
+}
+
+class Dscientist extends Scientist {
+    String award;
+
+    Dscientist(String name, int id, int no_of_publication, int experience, String award) {
+        super(name, id, no_of_publication, experience);
+        this.award = award;
+    }
+
+    public String toString() {
+        return "Dscientist [Name: " + name + ", ID: " + id + ", Publications: " + no_of_publication + ", Experience: " + experience + " years, Award: " + award + "]";
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        EMP emp = new EMP("Alice", 101);
+        Scientist scientist = new Scientist("Bob", 102, 50, 10);
+        Dscientist dscientist = new Dscientist("Charlie", 103, 100, 20, "Nobel Prize");
+
+        System.out.println(emp);
+        System.out.println(scientist);
+        System.out.println(dscientist);
+    }
+}
+```
+
+#### Now do the same program using Dynamic Method Dispatch
+
+```java
+class EMP {
+    String name;
+    int id;
+
+    EMP(String name, int id) {
+        this.name = name;
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "EMP [Name: " + name + ", ID: " + id + "]";
+    }
+}
+
+class Scientist extends EMP {
+    int no_of_publication;
+    int experience;
+
+    Scientist(String name, int id, int no_of_publication, int experience) {
+        super(name, id);
+        this.no_of_publication = no_of_publication;
+        this.experience = experience;
+    }
+
+    @Override
+    public String toString() {
+        return "Scientist [Name: " + name + ", ID: " + id + ", Publications: " + no_of_publication + ", Experience: " + experience + " years]";
+    }
+}
+
+class Dscientist extends Scientist {
+    String award;
+
+    Dscientist(String name, int id, int no_of_publication, int experience, String award) {
+        super(name, id, no_of_publication, experience);
+        this.award = award;
+    }
+
+    @Override
+    public String toString() {
+        return "Dscientist [Name: " + name + ", ID: " + id + ", Publications: " + no_of_publication + ", Experience: " + experience + " years, Award: " + award + "]";
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        EMP emp = new EMP("Alice", 101);
+        EMP scientist = new Scientist("Bob", 102, 50, 10);
+        EMP dscientist = new Dscientist("Charlie", 103, 100, 20, "Nobel Prize");
+
+        System.out.println(emp);
+        System.out.println(scientist);
+        System.out.println(dscientist);
+    }
+}
+```
+
+#### Create a class with a method void show () and make 3 subclasses of it and all subclasses have void show () method overridden and call those methods using their class references.
+
+```java
+class Base {
+    void show() {
+        System.out.println("This is the Base class.");
+    }
+}
+
+class SubClass1 extends Base {
+    void show() {
+        System.out.println("This is SubClass1.");
+    }
+}
+
+class SubClass2 extends Base {
+    void show() {
+        System.out.println("This is SubClass2.");
+    }
+}
+
+class SubClass3 extends Base {
+    void show() {
+        System.out.println("This is SubClass3.");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Base base1 = new SubClass1();
+        Base base2 = new SubClass2();
+        Base base3 = new SubClass3();
+
+        base1.show(); // Calls SubClass1's show method
+        base2.show(); // Calls SubClass2's show method
+        base3.show(); // Calls SubClass3's show method
+    }
+}
+```

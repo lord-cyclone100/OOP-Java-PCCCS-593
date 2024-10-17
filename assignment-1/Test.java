@@ -2,101 +2,28 @@
 
 import java.util.Scanner;
 
-class Bank{
-    String depositorName;
-    long accountNumber;
-    String accountType;
-    long balanceAmount;
-
-    Bank(String depositorName, long accountNumber, String accountType, long balanceAmount){
-        this.depositorName = depositorName;
-        this.accountNumber = accountNumber;
-        this.accountType = accountType;
-        this.balanceAmount = balanceAmount;
-        System.out.println("Account created");
+class Box{
+    void findVolume(double side){
+        System.out.println("Volume of cube : "+(side*side));
     }
 
-    void depositAmount(long amount){
-        System.out.println("Current balance: "+balanceAmount);
-        if(amount <= 0){
-            System.out.println("Please enter a valid amount");
-        }
-        else{
-            balanceAmount += amount;
-            System.out.println(amount + " deposited successfully");
-            System.out.println("New balance: "+ balanceAmount);
-        }
-    }
-
-    void withdrawAmount(long amount){
-        System.out.println("Current balance: "+balanceAmount);
-        if(amount <= 0){
-            System.out.println("Please enter a valid amount");
-        }
-        else if(amount > balanceAmount){
-            System.out.println("Insufficient balance");
-        }
-        else{
-            balanceAmount -= amount;
-            System.out.println(amount + " withdrawn successfully");
-            System.out.println("New balance: "+ balanceAmount);
-        }
-    }
-
-    void checkBalance(){
-        System.out.println("Name: "+depositorName);
-        System.out.println("Current Balance: "+balanceAmount);
+    void findVolume(double radius, double height){
+        System.out.println("Volume of cone : "+((1.0/3.0)*Math.PI*radius*radius*height));
     }
 }
 
 public class Test{
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your name:");
-        String name = scanner.nextLine();
-        System.out.println("Enter account number:");
-        long accNumber = scanner.nextLong();
-        System.out.println("Enter account type:");
-        String accType = scanner.next();
-        System.out.println("Enter initial Deposit amount:");
-        long depositAmt = scanner.nextLong();
-
-        Bank bank = new Bank(name, accNumber, accType, depositAmt);
-        int choice;
-        do{
-            System.out.println("What would you like to do");
-            System.out.println("1.) Deposit");
-            System.out.println("2.) Withdraw");
-            System.out.println("3.) Check Balance");
-            System.out.println("0.) Exit");
-            System.out.println("Enter your choice");
-            choice = scanner.nextInt();
-            switch(choice){
-                case 1:
-                    System.out.println("Enter amount to deposit:");
-                    long depoAmt = scanner.nextLong();
-                    bank.depositAmount(depoAmt);
-                    break;
-                
-                case 2:
-                    System.out.println("Enter amount to withdraw:");
-                    long withAmt = scanner.nextLong();
-                    bank.withdrawAmount(withAmt);
-                    break;
-
-                case 3:
-                    bank.checkBalance();
-                    break;
-
-                case 0:
-                    System.out.println("Thanks for using our service");
-                    break;
-
-                default:
-                    System.out.println("Invalid choice");
-                    break;
-            }
-        }
-        while(choice != 0);
+        System.out.println("Enter side : ");
+        double side = scanner.nextDouble();
+        System.out.println("Enter radius : ");
+        double radius = scanner.nextDouble();
+        System.out.println("Enter height : ");
+        double height = scanner.nextDouble();
+        
+        Box box = new Box();
+        box.findVolume(side);
+        box.findVolume(radius, height);
     }
 }
