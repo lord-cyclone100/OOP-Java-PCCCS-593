@@ -1092,3 +1092,186 @@ public class Test {
     }
 }
 ```
+
+#### Check without having any abstract method/s whether a class can be abstract; if so, then use that concrete method/s from another class having main method.
+
+```java
+abstract class Demo{
+    void display(){
+        System.out.println("Hello World");
+    }
+}
+
+class Task extends Demo{}
+
+public class Test{
+    public static void main(String[] args){
+        Demo d = new Task();
+        d.display();
+    }
+}
+```
+
+#### Create an abstract class with three abstract methods check whether you can we override only few methods (not all methods) in sub-class or not.
+
+```java
+abstract class Demo{
+    abstract void display();
+    abstract void show();
+    abstract void print();
+}
+
+abstract class Task extends Demo{
+    public void display(){
+        System.out.println("This is a display method");
+    }
+
+    public void print(){
+        System.out.println("This is a print method");
+    }
+}
+
+class Tutorial extends Task{
+    public void show(){
+        System.out.println("This is a show method");
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+        Tutorial t = new Tutorial();
+        t.display();
+        t.print();
+        t.show();
+    }
+}
+```
+
+#### Assume that a bank maintains two kinds of account for its customers, one called savings account and other called current account. The savings account provides compound interest and withdrawal facilities but no cheque book facility. The current account provides cheque book facility but no interest. Current account holders should also maintain a minimum balance (say Rs. 1000) and if the balance falls below this level a service charge is imposed (say Rs. 100).
+
+#### Create a class Account that stores customer name, account number and type of account. From this class derive two classes Curr_Acct and Savn_Acct respectively to make them more specific to their requirements. Include the necessary methods to achieve the following tasks and use constructors to initialize the class members.
++ Accept deposit from a customer and update the balance.
++ Display the balance.
++ Compute and deposit interest.
++ Permit withdrawal and update the balance.
++ Check for minimum balance, impose penalty, if necessary, and update the balance.
+
+```java
+abstract class Account {
+    String customerName;
+    String accountNumber;
+    String accountType;
+    double balance;
+
+    Account(String customerName, String accountNumber, String accountType, double balance) {
+        this.customerName = customerName;
+        this.accountNumber = accountNumber;
+        this.accountType = accountType;
+        this.balance = balance;
+    }
+
+    abstract void deposit(double amount);
+    abstract void displayBalance();
+    abstract void computeAndDepositInterest();
+    abstract void withdraw(double amount);
+    abstract void checkMinimumBalance();
+}
+
+class Curr_Acct extends Account {
+    static final double MIN_BALANCE = 1000;
+    static final double PENALTY = 100;
+
+    Curr_Acct(String customerName, String accountNumber, double balance) {
+        super(customerName, accountNumber, "Current", balance);
+    }
+
+    void deposit(double amount) {
+        balance += amount;
+        System.out.println("Deposited: " + amount);
+        displayBalance();
+    }
+
+    void displayBalance() {
+        System.out.println("Balance: " + balance);
+    }
+
+    @Override
+    void computeAndDepositInterest() {
+        // No interest for current accounts
+    }
+
+    void withdraw(double amount) {
+        if (balance - amount < 0) {
+            System.out.println("Insufficient funds for withdrawal.");
+        } else {
+            balance -= amount;
+            System.out.println("Withdrawn: " + amount);
+            checkMinimumBalance();
+            displayBalance();
+        }
+    }
+
+    void checkMinimumBalance() {
+        if (balance < MIN_BALANCE) {
+            balance -= PENALTY;
+            System.out.println("Balance below minimum. Penalty imposed: " + PENALTY);
+        }
+    }
+}
+
+class Savn_Acct extends Account {
+    static final double INTEREST_RATE = 0.04; // 4% annual interest rate
+
+    Savn_Acct(String customerName, String accountNumber, double balance) {
+        super(customerName, accountNumber, "Savings", balance);
+    }
+
+    void deposit(double amount) {
+        balance += amount;
+        System.out.println("Deposited: " + amount);
+        displayBalance();
+    }
+
+    void displayBalance() {
+        System.out.println("Balance: " + balance);
+    }
+
+    void computeAndDepositInterest() {
+        double interest = balance * INTEREST_RATE;
+        balance += interest;
+        System.out.println("Interest deposited: " + interest);
+        displayBalance();
+    }
+
+    void withdraw(double amount) {
+        if (balance - amount < 0) {
+            System.out.println("Insufficient funds for withdrawal.");
+        } else {
+            balance -= amount;
+            System.out.println("Withdrawn: " + amount);
+            displayBalance();
+        }
+    }
+
+    void checkMinimumBalance() {
+        // No minimum balance requirement for savings accounts
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Curr_Acct currentAccount = new Curr_Acct("John Doe", "C12345", 1500);
+        Savn_Acct savingsAccount = new Savn_Acct("Jane Doe", "S12345", 2000);
+
+        System.out.println("Current Account:");
+        currentAccount.deposit(500);
+        currentAccount.withdraw(2000);
+        currentAccount.withdraw(100);
+
+        System.out.println("\nSavings Account:");
+        savingsAccount.deposit(500);
+        savingsAccount.computeAndDepositInterest();
+        savingsAccount.withdraw(1000);
+    }
+}
+```
