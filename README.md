@@ -1275,3 +1275,108 @@ public class Test {
     }
 }
 ```
+
+#### Create an interface named Shape with a field pie (=3.14). Create two subclasses of it named Circle and Rectangle create object of the two classes and calculate their area.
+
+```java
+import java.util.Scanner;
+
+interface Shape{
+    double pie = 3.14;
+    void findArea();
+}
+
+class Circle implements Shape{
+    double radius;
+    Circle(double radius){
+        this.radius = radius;
+    }
+    public void findArea(){
+        System.out.println("Area of circle is: "+pie*radius*radius);
+    }
+}
+
+class Rectangle implements Shape{
+    double length;
+    double breadth;
+    Rectangle(double length, double breadth){
+        this.length = length;
+        this.breadth = breadth;
+    }
+    public void findArea(){
+        System.out.println("Area of Rectangle is: "+length*breadth);
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the radius of circle: ");
+        double radius = scanner.nextDouble();
+        System.out.println("Enter the length of rectangle: ");
+        double length = scanner.nextDouble();
+        System.out.println("Enter the breadth of rectangle: ");
+        double breadth = scanner.nextDouble();
+        
+        Circle circle = new Circle(radius);
+        Rectangle rectangle = new Rectangle(length, breadth);
+
+        circle.findArea();
+        rectangle.findArea();
+    }
+}
+```
+
+#### Create two interfaces, each with two methods. Inherit a new interface from the two, adding a new method. Create a class by implementing the new interface and also inheriting from a concrete class. In main (), create an object of derived class and call the methods. [do all without package statement]
+
+```java
+interface Interf1{
+    void method1();
+    void method2();
+}
+
+interface Interf2{
+    void method3();
+    void method4();
+}
+
+interface Interf3 extends Interf1, Interf2{
+    void method5();
+}
+
+class Demo{
+    public void method6(){
+        System.out.println("Method6");
+    }
+}
+
+class Task extends Demo implements Interf3{
+    public void method1(){
+        System.out.println("Method1");
+    }
+    public void method2(){
+        System.out.println("Method2");
+    }
+    public void method3(){
+        System.out.println("Method3");
+    }
+    public void method4(){
+        System.out.println("Method4");
+    }
+    public void method5(){
+        System.out.println("Method5");
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+       Task task = new Task();
+       task.method1();
+       task.method2();
+       task.method3();
+       task.method4();
+       task.method5();
+       task.method6();
+    }
+}
+```
