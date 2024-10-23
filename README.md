@@ -1327,6 +1327,44 @@ public class Test{
 }
 ```
 
+#### Create a class which contains an inner class. Show that inner class can use member of outer class directly, but Outer class can use member of Inner class only through its object. Check the name of class file, you created.
+
+```java
+class Outer{
+    public void display(){
+        System.out.println("Hello");
+    }
+    int x = 10;
+
+    class Inner{
+        public void greet(){
+            System.out.println("Welcome");
+        }
+        int y = 50;
+        public void displayOuterDetails(){
+            System.out.println(x);
+            display();
+        }
+    }
+
+    public void displayInnerDetails(){
+        Inner inner = new Inner();
+        inner.greet();
+        System.out.println(inner.y);
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+       Outer o = new Outer();
+       Outer.Inner in = o.new Inner();
+       in.displayOuterDetails();
+    // new Outer().new Inner().displayOuterDetails();
+    o.displayInnerDetails();
+    }
+}
+```
+
 #### Create two interfaces, each with two methods. Inherit a new interface from the two, adding a new method. Create a class by implementing the new interface and also inheriting from a concrete class. In main (), create an object of derived class and call the methods. [do all without package statement]
 
 ```java
@@ -1377,6 +1415,41 @@ public class Test{
        task.method4();
        task.method5();
        task.method6();
+    }
+}
+```
+
+#### Write a program to demonstrate anonymous inner class (using super class and interface)
+
+```java
+class Demo{
+    public void display(){
+        System.out.println("Hello");
+    }
+}
+
+interface Interf{
+    void greet();
+}
+
+public class Test{
+    public static void main(String[] args){
+       Demo d1 = new Demo(){
+        public void display(){
+            System.out.println("Konichiwa");
+        }
+       };
+       d1.display();
+
+       Interf i = new Interf(){
+        public void greet(){
+            System.out.println("Namaste");
+        }
+       };
+       i.greet();
+
+       Demo d3 = new Demo();
+       d3.display();
     }
 }
 ```
