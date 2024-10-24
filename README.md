@@ -1453,3 +1453,67 @@ public class Test{
     }
 }
 ```
+
+#### Show that ordinary block is executed when object is created and also the order of execution of these blocks (for multiple blocks/inherited block).
+
+```java
+class Demo{
+    Demo(){
+        System.out.println("Inside Demo constructor");
+    }
+    {
+        System.out.println("Inside non static block 1");
+    }
+    {
+        System.out.println("Inside non static block 2");
+    }
+}
+
+class Tutorial extends Demo{
+    Tutorial(){
+        System.out.println("Inside Tutorial constructor");
+    }
+    {
+        System.out.println("Inside non static block 3");
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+       Tutorial t = new Tutorial();
+    }
+}
+```
+
+#### Show that static block is executed at the time of class loading and also the order of execution of these blocks (for multiple blocks/inherited block).
+
+```java
+class Demo{
+    Demo(){
+        System.out.println("Inside Demo constructor");
+    }
+    static{
+        System.out.println("Inside static block 1");
+    }
+    static{
+        System.out.println("Inside static block 2");
+    }
+}
+
+class Tutorial extends Demo{
+    Tutorial(){
+        System.out.println("Inside Tutorial constructor");
+    }
+    static{
+        System.out.println("Inside static block 3");
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+        Demo d1 = new Demo();
+        Demo d2 = new Demo();
+        Tutorial t = new Tutorial();
+    }
+}
+```
