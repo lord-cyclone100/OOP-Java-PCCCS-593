@@ -1517,3 +1517,103 @@ public class Test{
     }
 }
 ```
+
+#### Create a class with variable(s) and method(s) (all will be default accessed) under package pOne. Now create a class under package pTwo, which is subclass of firstly created class. In the method here (i.e. class of pTwo) call variable(s) and method(s) of previous class (i.e. class of pOne). If errors come, rectify them. Now from Main (under working directory) access second class’s members.
+
+###### Creating pOne
+
+```java
+package pOne;
+
+public class Cut{
+    public int x = 10;
+    public static double y = 20.3;
+    public void method1(){
+        System.out.println("Inside method1");
+    }
+    public static void method2(){
+        System.out.println("Inside method2");
+    }
+}
+```
+Run the file with `javac -d. Cut.java` to create the package
+
+###### Creating pTwo
+
+```java
+package pTwo;
+import pOne.Cut;
+
+public class Copy{
+    public void method3(){
+        Cut cut = new Cut();
+        System.out.println(cut.x + " <----> " + cut.y);
+        cut.method1();
+        cut.method2();
+    }
+}
+```
+Run the file with `javac -d. Copy.java` to create the package
+
+###### Main file
+
+```java
+import pTwo.Copy;
+
+public class Test{
+    public static void main(String[] args){
+        Copy cpy = new Copy();
+        cpy.method3();
+    }
+}
+```
+
+#### Create an interface containing three methods, in a package ‘pkgOne’. Implement the interface from a class under package pkgTwo. From main, under working directory, create object of the class and call methods of interface.
+
+###### Creating pkgOne
+
+```java
+package pkgOne;
+
+public interface College{
+    void students();
+    void theoryFaculty();
+    void labFaculty();
+}
+```
+Run the file with `javac -d. College.java` to create the package
+
+###### Creating pkgTwo
+
+```java
+package pkgTwo;
+import pkgOne.College;
+
+public class Units implements College{
+    public void students(){
+        System.out.println("Students");
+    }
+    public void theoryFaculty(){
+        System.out.println("Theory Faculty");
+    }
+    public void labFaculty(){
+        System.out.println("Lab Faculty");
+    }
+}
+```
+Run the file with `javac -d. Units.java` to create the package
+
+###### Main file
+
+```java
+import pkgTwo.Units;
+
+public class Test{
+    public static void main(String[] args){
+        Units unt = new Units();
+        unt.students();
+        unt.theoryFaculty();
+        unt.labFaculty();
+    }
+}
+```
