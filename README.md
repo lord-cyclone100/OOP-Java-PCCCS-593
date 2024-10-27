@@ -1624,3 +1624,91 @@ public class Test{
     }
 }
 ```
+
+#### Take a sting from keyboard and convert into character array (new one).
+```java
+import java.util.Scanner;
+
+public class Test{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a string:");
+        String str = scanner.nextLine();
+
+        char[] charStr = str.toCharArray();
+        for(int i=0;i<charStr.length;i++){
+            System.out.print(charStr[i]+" ");
+        }
+    }
+}
+```
+
+#### Take a string from keyboard and a char array (of length 5). Now append the string to that char array.
+
+```java
+import java.util.Scanner;
+
+public class Test{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter a string:");
+        String str = scanner.nextLine();
+        
+        char[] charStr = new char[5];
+        System.out.println("Enter 5 characters");
+        for(int i=0;i<charStr.length;i++){
+            charStr[i] = scanner.next().charAt(0);
+        }
+
+        char[] joinedCharArray = new char[charStr.length+str.length()];
+        for(int i=0;i<charStr.length;i++){
+            joinedCharArray[i] = charStr[i];
+        }
+
+        for(int i=0;i<str.length();i++){
+            joinedCharArray[5+i] = str.charAt(i);
+        }
+
+        System.out.println(joinedCharArray);
+    }
+}
+```
+
+#### Find length of a string taken from keyboard and also find the length of that string except front and end spaces.
+
+```java
+import java.util.Scanner;
+
+public class Test{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter a string with front and end spaces :");
+        String str = scanner.nextLine();
+
+        System.out.println("Length of original string : "+str.length());
+        System.out.println("Length of string excluding spaces: "+str.trim().length());
+    }
+}
+```
+
+#### Check if "Tech" presents in "University of Technology" or not. If yes return its position.
+
+```java
+public class Test{
+    public static void main(String[] args){
+        String str = "University of Technology";
+        String subStr = "Tech";
+
+        int idx = str.indexOf(subStr);
+
+        if(idx == -1){
+            System.out.println("Substring not found");
+        }
+        else{
+            System.out.println("Substring found at index " + idx);
+        }
+    }
+}
+```
