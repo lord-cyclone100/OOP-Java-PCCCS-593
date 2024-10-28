@@ -1712,3 +1712,101 @@ public class Test{
     }
 }
 ```
+
+#### Generate password from initials of one’s first_name, middle_name, last_name and with last four digit of your roll_no.(if middlename not presents ,it won't come)
+
+```java
+import java.util.Scanner;
+
+public class Test{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter first name :");
+        String fname = scanner.next();
+        System.out.println("Enter middle name. (Enter 'nil' if no middle name) :");
+        String mname = scanner.next();
+        System.out.println("Enter last name :");
+        String lname = scanner.next();
+        System.out.println("Enter roll number :");
+        long roll = scanner.nextLong();
+
+        String rollNumber = Long.toString(roll);
+        String numExtract = rollNumber.substring(rollNumber.length() - 4);
+        if(mname.toLowerCase().equals("nil")){
+            System.out.println("Yopr password : "+fname.charAt(0)+lname.charAt(0)+numExtract);
+        }
+        else{
+            System.out.println("Your password : "+fname.charAt(0)+mname.charAt(0)+lname.charAt(0)+numExtract);
+        }
+    }
+}
+```
+
+#### Show that the String object is immutable but StringBuffer type object is mutable.
+
+```java
+public class Test {
+    public static void main(String[] args) {
+        String str = "Hello";
+        System.out.println("Original String: " + str);
+        str.concat(" World");
+        System.out.println("After concat (String): " + str);
+
+        StringBuffer stringBuffer = new StringBuffer("Hello");
+        System.out.println("Original StringBuffer: " + stringBuffer);
+        stringBuffer.append(" World");
+        System.out.println("After append (StringBuffer): " + stringBuffer);
+    }
+}
+```
+
+#### Write a program in Java which will read a string and rewrite it in the alphabetical order. For example, the word STRING should be written as GINRST.
+
+```java
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class Test{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter a string:");
+        String str = scanner.next();
+        char[] strArray = str.toCharArray();
+
+        Arrays.sort(strArray);
+
+        String sortedStr = new String(strArray);
+        System.out.println("Sorted string: " + sortedStr);
+    }
+}
+```
+
+#### Write a program in Java to extract a portion of a character string and print the extracted string. Assume that m characters are extracted, starting with the n-th character.
+
+```java
+import java.util.Scanner;
+
+public class Test{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter a string:");
+        String str = scanner.nextLine();
+       
+        System.out.println("Enter a starting index:");
+        int idx = scanner.nextInt();
+
+        System.out.println("Enter number of extracted characters:");
+        int ext = scanner.nextInt();
+
+        try{
+            System.out.println(str.substring(idx,(ext+idx)));
+        }
+        catch(StringIndexOutOfBoundsException sioobe){
+            System.out.println("Wrong index entered");
+        }
+    }
+}
+```
