@@ -1919,3 +1919,21 @@ public class Test{
     }
 }
 ```
+
+#### Write a program to fire the NegativeArraySize exception.
+
+```java
+public class Test{
+
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        
+        try{
+            int[] num = new int[-5];
+        }
+        catch(NegativeArraySizeException nase){
+            System.out.println("Array index is negative");
+        }
+    }
+}
+```

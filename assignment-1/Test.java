@@ -6,16 +6,12 @@ public class Test{
 
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
-        int[] num = {1,2,3,4,5};
-        String str = "Java";
+        
         try{
-            System.out.println(num[10]);
+            int[] num = new int[-5];
         }
-        catch(ArrayIndexOutOfBoundsException aioobe){
-            System.out.println("Array index exceeded");
-        }
-        catch(StringIndexOutOfBoundsException sioobe){
-            System.out.println("String index exceeded");
+        catch(NegativeArraySizeException nase){
+            System.out.println("Array index is negative");
         }
     }
 }
