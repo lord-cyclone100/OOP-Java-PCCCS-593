@@ -6,25 +6,16 @@ public class Test{
 
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Who is the Inventor of Java?");
-        int chances = 0;
-        int i = 0; 
-
-        for(i=0;i<3;i++){
-            System.out.println("Your answer : ");
-            String ans = scanner.nextLine();
-            if(ans.toLowerCase().equals("james gosling")){
-                System.out.println("You are correct. Good.");
-                break;
-            }
-            else{
-                System.out.println("Incorrect answer.");
-                chances++;
-            }
+        int[] num = {1,2,3,4,5};
+        String str = "Java";
+        try{
+            System.out.println(num[10]);
         }
-        if(i == 3){
-            System.out.println("The correct answer is James Gosling");
+        catch(ArrayIndexOutOfBoundsException aioobe){
+            System.out.println("Array index exceeded");
+        }
+        catch(StringIndexOutOfBoundsException sioobe){
+            System.out.println("String index exceeded");
         }
     }
 }
