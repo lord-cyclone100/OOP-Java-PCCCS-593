@@ -1,26 +1,30 @@
 // Write a program to find the sum of digits of a given integer number (1st day using static i/p and 2nd day using command-line argument).
 
 import java.util.Scanner;
-import java.util.Arrays;
 
 public class Test{
+
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter a string:");
-        String str = scanner.nextLine();
-       
-        System.out.println("Enter a starting index:");
-        int idx = scanner.nextInt();
+        System.out.println("Who is the Inventor of Java?");
+        int chances = 0;
+        int i = 0; 
 
-        System.out.println("Enter number of extracted characters:");
-        int ext = scanner.nextInt();
-
-        try{
-            System.out.println(str.substring(idx,(ext+idx)));
+        for(i=0;i<3;i++){
+            System.out.println("Your answer : ");
+            String ans = scanner.nextLine();
+            if(ans.toLowerCase().equals("james gosling")){
+                System.out.println("You are correct. Good.");
+                break;
+            }
+            else{
+                System.out.println("Incorrect answer.");
+                chances++;
+            }
         }
-        catch(StringIndexOutOfBoundsException sioobe){
-            System.out.println("Wrong");
+        if(i == 3){
+            System.out.println("The correct answer is James Gosling");
         }
     }
 }

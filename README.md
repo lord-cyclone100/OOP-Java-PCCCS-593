@@ -1787,6 +1787,7 @@ public class Test{
 
 ```java
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class Test{
     public static void main(String[] args){
@@ -1805,7 +1806,77 @@ public class Test{
             System.out.println(str.substring(idx,(ext+idx)));
         }
         catch(StringIndexOutOfBoundsException sioobe){
-            System.out.println("Wrong index entered");
+            System.out.println("Wrong index");
+        }
+    }
+}
+```
+
+#### Write your own method called deleteMe(String str, int m) that returns the input string with the m-th element removed.
+
+```java
+import java.util.Scanner;
+
+public class Test{
+
+    static void deleteMe(String str, int m){
+        StringBuffer sb = new StringBuffer();
+        try{
+            sb.append(str.substring(0,m));
+            sb.append(str.substring(m+1));
+        }
+        catch(StringIndexOutOfBoundsException sioobe){
+            System.out.println("Wrong index");
+        }
+        System.out.println("New string : "+sb);
+    }
+
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter a string:");
+        String str = scanner.nextLine();
+       
+        System.out.println("Enter a starting index:");
+        int idx = scanner.nextInt();
+        deleteMe(str,idx);
+    }
+}
+```
+
+#### Write a program to do the following:
+1. To output the question “Who is the inventor of Java”?
+2. To accept an answer.
+3. To print out “Good” and then stop, if the answer is correct.
+4. To output the message “Try Again” and then stop, if the answer is wrong.
+5. To display the correct answer when the answer is wrong even at the third attempts and stop.
+
+```java
+import java.util.Scanner;
+
+public class Test{
+
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Who is the Inventor of Java?");
+        int chances = 0;
+        int i = 0; 
+
+        for(i=0;i<3;i++){
+            System.out.println("Your answer : ");
+            String ans = scanner.nextLine();
+            if(ans.toLowerCase().equals("james gosling")){
+                System.out.println("You are correct. Good.");
+                break;
+            }
+            else{
+                System.out.println("Incorrect answer.");
+                chances++;
+            }
+        }
+        if(i == 3){
+            System.out.println("The correct answer is James Gosling");
         }
     }
 }
