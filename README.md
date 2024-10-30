@@ -1937,3 +1937,26 @@ public class Test{
     }
 }
 ```
+
+#### Define an object reference and initialize it to null. Try to call a method through this reference. Now wrap the code in a try-catch clause to catch the exception.
+
+```java
+class Demo{
+    void m(){
+        System.out.println("Hello World");
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+        Demo d = new Demo();
+        d = null;
+        try{
+            d.m();
+        }
+        catch(NullPointerException npe){
+            System.out.println("Null pointer Exception encountered");
+        }
+    }
+}
+```
