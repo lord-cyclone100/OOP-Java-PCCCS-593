@@ -1960,3 +1960,102 @@ public class Test{
     }
 }
 ```
+
+#### Write a program to fire any checked exception manually using ‘throw’ keyword.
+
+```java
+import java.io.IOException;
+
+class Demo {
+    void m() throws IOException {
+        throw new IOException("Manually thrown IOException");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Demo demo = new Demo();
+        try {
+            demo.m();
+        } catch (IOException e) {
+            System.out.println("Caught exception: " + e.getMessage());
+        }
+    }
+}
+```
+
+#### Write a program to create a user defined exception named PayOutOfBoundsException (provided the monthly salary of a person is less than Rs. 10,000 /-) and fire the exception.
+
+```java
+import java.util.Scanner;
+
+class PayOutOfBoundsException extends RuntimeException{
+    PayOutOfBoundsException(String str){
+        super(str);
+    }
+}
+
+public class Test{
+
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("enter a salary value : ");
+        int salary = scanner.nextInt();
+
+        if(salary < 10000){
+            throw new PayOutOfBoundsException("Salary is too low");
+        }
+        else{
+            System.out.println("Salary is valid");
+        }
+    }
+}
+```
+
+#### Create a class with two methods, f( ) and g( ). In g( ), throw an exception of a new type that you define. In f( ), call g( ), catch its exception and, in the catch clause, throw a different exception (of a second type that you define). Test your code in main( ).
+
+```java
+import java.util.Scanner;
+
+class CustomException extends Exception{
+    CustomException(String str){
+        super(str);
+    }
+}
+
+class MyException extends Exception{
+    MyException(String str){
+        super(str);
+    }
+}
+
+class Demo{
+    void f() throws MyException{
+        try{
+            g();
+        }
+        catch(CustomException ce){
+            System.out.println(ce.getMessage());
+            throw new MyException("my exception caught");
+        }
+    }
+    void g() throws CustomException{
+        throw new CustomException("custom exception caught");
+    }
+}
+
+public class Test{
+
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+
+        Demo d = new Demo();
+        try{
+            d.f();
+        }
+        catch (MyException me){
+            System.out.println(me.getMessage());
+        }
+    }
+}
+```
