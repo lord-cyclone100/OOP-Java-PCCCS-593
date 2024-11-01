@@ -2059,3 +2059,71 @@ public class Test{
     }
 }
 ```
+
+#### Write a program that takes one string and two integers as command line argument and prints the reverse of the substring of the string specified by the two numbers. The program should handle all possible exception that may arise due to bad input.
+
+```java
+public class Test {
+    public static void main(String[] args) {
+        try {
+            if (args.length != 3) {
+                throw new IllegalArgumentException("Please provide exactly one string and two integers as arguments.");
+            }
+            String str = args[0];
+            int start = Integer.parseInt(args[1]);
+            int end = Integer.parseInt(args[2]);
+            if (start < 0 || end > str.length() || start > end) {
+                throw new StringIndexOutOfBoundsException("Invalid substring indices.");
+            }
+            String substring = str.substring(start, end);
+            String reversedSubstring = new StringBuilder(substring).reverse().toString();
+            System.out.println("Reversed substring: " + reversedSubstring);
+        }
+        catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Error: Not enough command-line arguments provided.");
+        }
+        catch (NumberFormatException e) {
+            System.out.println("Error: Please provide valid integers for the substring indices.");
+        }
+        catch (StringIndexOutOfBoundsException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        catch (Exception e) {
+            System.out.println("An unexpected error occurred: " + e.getMessage());
+        }
+    }
+}
+```
+
+#### Write a demo program to illustrate ‘throws’ versus method overriding.
+
+```java
+import java.io.IOException;
+
+class Base {
+    void display() throws IOException {
+        throw new IOException("IOException thrown from Base class");
+    }
+}
+
+class Derived extends Base {
+    @Override
+    void display() throws IOException {
+        throw new IOException("IOException thrown from Derived class");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Base b = new Derived();
+        try {
+            b.display();
+        } catch (IOException e) {
+            System.out.println("Caught exception: " + e.getMessage());
+        }
+    }
+}
+```
