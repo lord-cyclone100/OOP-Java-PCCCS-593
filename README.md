@@ -1882,6 +1882,8 @@ public class Test{
 }
 ```
 
+## Assignment-7
+
 #### Write a program to handle the ArithmeticException.
 
 ```java
