@@ -2,89 +2,42 @@
 
 import java.util.Scanner;
 
-class CustomException extends Exception{
-    CustomException(String str){
-        super(str);
-    }
-}
-
-class MyException extends Exception{
-    MyException(String str){
-        super(str);
-    }
-}
-
-class Demo{
-    void f() throws MyException{
-        try{
-            g();
-        }
-        catch(CustomException ce){
-            System.out.println(ce.getMessage());
-            throw new MyException("my exception caught");
-        }
-    }
-    void g() throws CustomException{
-        throw new CustomException("custom exception caught");
-    }
-}
-
 public class Test{
+
+    static double calcDiscriminant(double a, double b, double c){
+        return ((b*b) - (4*a*c));
+    }
+
+    static void calcRoots(double a, double b, double c){
+        double d = calcDiscriminant(a,b,c);
+        if(d==0){
+            System.out.println("The roots are real and equal. Each of the roots is : "+((b*(-1))/(2*a)));
+        }
+        else if (d > 0){
+            double root1 = ((b*(-1))+(Math.sqrt(d)))/(2*a);
+            double root2 = ((b*(-1))-(Math.sqrt(d)))/(2*a);
+            System.out.println("The roots are real and distinct. The roots are : "+root1+" and "+root2);
+        }
+        else{
+            double real = ((b*(-1))/(2*a));
+            double image = ((Math.sqrt(d*(-1)))/(2*a));
+            System.out.println("The roots are real and imaginary. The roots are : "+real+" + "+image+"i and "+real+" - "+image+"i");
+        }
+    }
 
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
 
-        Demo d = new Demo();
-        try{
-            d.f();
-        }
-        catch (MyException me){
-            System.out.println(me.getMessage());
-        }
+        System.out.println("Enter the coefficient of x^2 : ");
+        double a = scanner.nextDouble();
+        
+        System.out.println("Enter the coefficient of x : ");
+        double b = scanner.nextDouble();
+        
+        System.out.println("Enter the constant term : ");
+        double c = scanner.nextDouble();
+
+        System.out.println("Roots of the equation are : ");
+        calcRoots(a,b,c);
     }
 }
-
-
-
-
-// import java.util.Scanner;
-
-// // Define the first custom exception
-// class CustomException extends Exception {
-//     CustomException(String str) {
-//         super(str);
-//     }
-// }
-
-// // Define the second custom exception
-// class MyException extends Exception {
-//     MyException(String str) {
-//         super(str);
-//     }
-// }
-
-// class Demo {
-//     void f() throws MyException {
-//         try {
-//             g();
-//         } catch (CustomException ce) {
-//             System.out.println("Caught in f(): " + ce.getMessage());
-//             throw new MyException("MyException thrown from f()");
-//         }
-//     }
-
-//     void g() throws CustomException {
-//         throw new CustomException("CustomException thrown from g()");
-//     }
-// }
-
-// public class Test {
-//     public static void main(String[] args) {
-//         Demo d = new Demo();
-//         try {
-//             d.f();
-//         } catch (MyException me) {
-//             System.out.println("Caught in main(): " + me.getMessage());
-//         }
-//     }
-// }

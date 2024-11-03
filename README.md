@@ -405,6 +405,80 @@ public class Test{
 }
 ```
 
+#### Write a program to calculate the Simple Interest (si) while your inputs are principle (p), time in years (n) and rate of interest (r).
+
+```java
+import java.util.Scanner;
+
+public class Test{
+
+    static double calcSimpleInterest(double p, double r, double t){
+        return (p*r*t)/100;
+    }
+
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter principle amount : ");
+        double p = scanner.nextDouble();
+        
+        System.out.println("Enter rate of interest : ");
+        double r = scanner.nextDouble();
+        
+        System.out.println("Enter time in years : ");
+        double t = scanner.nextDouble();
+
+        System.out.println("Simple Interest = "+ calcSimpleInterest(p,r,t));
+    }
+}
+```
+
+#### Write a program to find the roots of the quadratic equation ax2 + bx + c = 0 where a, b and c are constants.
+
+```java
+import java.util.Scanner;
+
+public class Test{
+
+    static double calcDiscriminant(double a, double b, double c){
+        return ((b*b) - (4*a*c));
+    }
+
+    static void calcRoots(double a, double b, double c){
+        double d = calcDiscriminant(a,b,c);
+        if(d==0){
+            System.out.println("The roots are real and equal. Each of the roots is : "+((b*(-1))/(2*a)));
+        }
+        else if (d > 0){
+            double root1 = ((b*(-1))+(Math.sqrt(d)))/(2*a);
+            double root2 = ((b*(-1))-(Math.sqrt(d)))/(2*a);
+            System.out.println("The roots are real and distinct. The roots are : "+root1+" and "+root2);
+        }
+        else{
+            double real = ((b*(-1))/(2*a));
+            double image = ((Math.sqrt(d*(-1)))/(2*a));
+            System.out.println("The roots are real and imaginary. The roots are : "+real+" + "+image+"i and "+real+" - "+image+"i");
+        }
+    }
+
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the coefficient of x^2 : ");
+        double a = scanner.nextDouble();
+        
+        System.out.println("Enter the coefficient of x : ");
+        double b = scanner.nextDouble();
+        
+        System.out.println("Enter the constant term : ");
+        double c = scanner.nextDouble();
+
+        System.out.println("Roots of the equation are : ");
+        calcRoots(a,b,c);
+    }
+}
+```
+
 ## Assignment-2
 
 #### Add two numbers by taking input using Command Line Input, Scanner class and BufferedReader class.
