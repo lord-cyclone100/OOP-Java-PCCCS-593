@@ -1699,6 +1699,8 @@ public class Test{
 }
 ```
 
+## Assignment-7
+
 #### Take a sting from keyboard and convert into character array (new one).
 ```java
 import java.util.Scanner;
@@ -1956,7 +1958,7 @@ public class Test{
 }
 ```
 
-## Assignment-7
+## Assignment-8
 
 #### Write a program to handle the ArithmeticException.
 
@@ -2200,6 +2202,67 @@ public class Test {
         } catch (IOException e) {
             System.out.println("Caught exception: " + e.getMessage());
         }
+    }
+}
+```
+
+## Assignment-9
+
+#### Inherit a class from Thread and override the run( ) method. Inside run( ), print name of thread , and then call sleep( ). Repeat this three times, then return from run( ). Put a start-up message in the constructor. Make your thread object and main thread run to see what happens.
+
+```java
+import java.util.Scanner;
+
+class MyThread extends Thread{
+    MyThread(){
+        System.out.println("This is my thread");
+    }
+    public void run(){
+        for(int i=0;i<3;i++){
+            System.out.println(Thread.currentThread().getName());
+            try{
+                Thread.currentThread().sleep(2000);
+            }
+            catch(InterruptedException ie){}
+        }
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+
+        MyThread t = new MyThread();
+        t.start();
+    }
+}
+```
+
+#### Implement a class from Runnable and override the run( ) method. Inside run( ), print full qualified name of thread, and then call sleep( ). Repeat this three times, then return from run( ). Put a start-up message in the constructor. Make your thread object and main thread run to see what happens.
+
+```java
+class MyRunnable implements Runnable{
+    MyRunnable(){
+        System.out.println("This is my runnable");
+    }
+    public void run(){
+        for(int i=0;i<3;i++){
+            System.out.println(Thread.currentThread().getName());
+            try{
+                Thread.currentThread().sleep(2000);
+            }
+            catch(InterruptedException ie){}
+        }
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+
+        MyRunnable r = new MyRunnable();
+        Thread t = new Thread(r);
+        t.start();
     }
 }
 ```
