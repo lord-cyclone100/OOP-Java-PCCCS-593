@@ -3,17 +3,12 @@
 import java.util.Scanner;
 
 class MyRunnable implements Runnable{
-    MyRunnable(){
-        System.out.println("This is my runnable");
-    }
+    // MyThread(String name) {
+    //     super(name);
+    // }
+
     public void run(){
-        for(int i=0;i<3;i++){
-            System.out.println(Thread.currentThread().getName());
-            try{
-                Thread.currentThread().sleep(2000);
-            }
-            catch(InterruptedException ie){}
-        }
+        System.out.println(Thread.currentThread().getName()+" "+Thread.currentThread().getPriority());
     }
 }
 
@@ -22,15 +17,23 @@ public class Test{
         Scanner scanner = new Scanner(System.in);
 
         MyRunnable r = new MyRunnable();
-        Thread t = new Thread(r);
-        t.start();
-        // System.out.println(currentThread().getName());
-        // for(int i=0;i<3;i++){
-        //     System.out.println(Thread.currentThread().getName());
-        //     // try{
-        //     //     Thread.currentThread().sleep(2000);
-        //     // }
-        //     // catch(InterruptedException ie){}
-        // }
+
+        Thread t1 = new Thread(r);
+        Thread t2 = new Thread(r);
+        Thread t3 = new Thread(r);
+        Thread t4 = new Thread(r);
+        Thread t5 = new Thread(r);
+
+        t1.setPriority(1);
+        t2.setPriority(5);
+        t3.setPriority(10);
+        t4.setPriority(7);
+        t5.setPriority(3);
+
+        t1.start();
+        t2.start();
+        t3.start();
+        t4.start();
+        t5.start();
     }
 }
