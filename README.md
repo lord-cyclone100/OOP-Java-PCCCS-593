@@ -2338,3 +2338,84 @@ public class Test{
     }
 }
 ```
+
+## Assignment-10
+
+#### Write a program to read words from a text input file and print them over console.
+
+```java
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class Animal {
+    public static void main(String[] args) {
+        File myFile = new File("hello.txt");
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(myFile);
+            while (scanner.hasNextLine()) {
+                String data = scanner.nextLine();
+                System.out.println(data);
+            }
+        }
+        catch (FileNotFoundException fnfe) {}
+        finally {
+            if (scanner != null) {
+                scanner.close();
+            }
+        }
+    }
+}
+```
+
+#### Write a program to concatenate the contents of two files into third one.
+
+```java
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class Test {
+    public static void main(String[] args) {
+        File myFile1 = new File("file1.txt");
+        File myFile2 = new File("file2.txt");
+        Scanner scanner = null;
+        String data = "";
+        try {
+            scanner = new Scanner(myFile1);
+            while (scanner.hasNextLine()) {
+                data = data+scanner.nextLine();
+            }
+
+            scanner = new Scanner(myFile2);
+            while (scanner.hasNextLine()) {
+                data = data+"\n"+scanner.nextLine();
+            }
+        }
+        catch (FileNotFoundException fnfe) {}
+        finally {
+            if (scanner != null) {
+                scanner.close();
+            }
+        }
+        FileWriter myFile3 = null;
+        try{
+            myFile3 = new FileWriter("file3.txt");
+            myFile3.write(data);
+        }
+        catch(IOException ioe){}
+        finally{
+            if (myFile3 != null) {
+                try {
+                    myFile3.close();
+                } catch (IOException ioe) {
+                    System.out.println("Error closing FileWriter: " + ioe.getMessage());
+                }
+            }
+        }
+    }
+}
+```

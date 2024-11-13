@@ -1,0 +1,2 @@
+Creating a prototype website that also contains copy and images is the only way to help the client understand what the concept behind your design is.
+Without these elements, the finished product can look quite odd, and the client won’t be able to mentally project his own content uploaded on the site.
