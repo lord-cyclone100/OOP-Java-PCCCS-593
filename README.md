@@ -2393,7 +2393,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class Animal {
+public class Test {
     public static void main(String[] args) {
         File myFile = new File("hello.txt");
         Scanner scanner = null;
@@ -2410,6 +2410,37 @@ public class Animal {
                 scanner.close();
             }
         }
+    }
+}
+```
+
+#### Write a program to save the sentences to a file you type using keyboard on a console until you put ‘eof’ marker (say ‘q’).
+
+```java
+import java.io.File;
+import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class Test {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String str = "";
+        String text;
+        try{
+            FileWriter fw = new FileWriter("file4.txt");
+            do{
+                System.out.println("Enter a string (or 'q' to quit):");
+                text = scanner.nextLine();
+                if(!text.equals("q")){
+                    str += text + " ";
+                    fw.write(text+"\n");
+                }
+            }
+            while(!text.equals("q"));
+            fw.close();
+        }
+        catch(IOException ioe){};
     }
 }
 ```
@@ -2466,6 +2497,8 @@ public class Test {
 ```
 
 ## Assignment-11
+
+### NOTE:- Applet is deprecated in the current java versions. Please use jdk 1.8 to run Applet programs 
 
 #### Show phases of life cycle of applet using string message display both on console and applet.
 
