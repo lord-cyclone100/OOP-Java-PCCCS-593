@@ -2464,3 +2464,145 @@ public class Test {
     }
 }
 ```
+
+## Assignment-11
+
+#### Show phases of life cycle of applet using string message display both on console and applet.
+
+```java
+import java.awt.*;
+import java.applet.*;
+
+/*<applet code="Test4.class" height=50 width=600></applet>*/
+
+public class Test4 extends Applet{
+    String msg;
+    public void init(){
+        setBackground(Color.black);
+        setForeground(Color.yellow);
+        msg = "Inside init method ----";
+    }
+
+    public void start(){
+        msg += "Inside start method ----";
+    }
+
+    public void paint(Graphics g){
+        String paintMsg = msg + "Inside paint method ----";
+        g.drawString(paintMsg,10,30);
+    }
+
+    public void stop(){
+        msg += "Inside stop method ----";
+    }
+
+    public void destroy(){
+        msg += "Inside destroy method ----";
+    }
+}
+```
+
+<img src="./applet/app1.png">
+
+#### Display your name at middle portion of applet.
+
+```java
+import java.awt.*;
+import java.applet.*;
+
+/*<applet code="Test5.class" height="100" width="400"></applet>*/
+
+public class Test5 extends Applet{
+
+    public void init(){
+        setBackground(Color.red);
+        setForeground(Color.white);
+    }
+    public void paint(Graphics g){
+        Dimension d = getSize();
+        int xc = d.width/2;
+        int yc = d.height/2;
+        Font font = new Font("Arial", Font.BOLD, 20);
+        g.setFont(font);
+        g.drawString("Sangneel Deb", xc, yc);
+    }
+}
+```
+
+<img src="./applet/app2.png">
+
+#### Draw an oval with centre at middle of applet and radius is 200 pixels.
+
+```java
+import java.awt.*;
+import java.applet.*;
+
+/*<applet code="Test6.class" height="500" width="500"></applet>*/
+
+public class Test6 extends Applet{
+    public void paint(Graphics g){
+        Dimension d = getSize();
+        int xc = d.width/2;
+        int yc = d.height/2;
+        int r = 200;
+        g.drawOval(xc-r,yc-r,400,400);
+    }
+}
+```
+
+<img src="./applet/app3.png">
+
+#### Draw a circle filled with blue color with centre at middle of applet and radius 200 pixel.
+
+```java
+import java.awt.*;
+import java.applet.*;
+
+/*<applet code="Test7.class" height="500" width="500"></applet>*/
+
+public class Test7 extends Applet{
+    public void paint(Graphics g){
+        Dimension d = getSize();
+        int xc = d.width/2;
+        int yc = d.height/2;
+        int r = 200;
+        setForeground(Color.blue);
+        g.fillOval(xc-r,yc-r,400,400);
+    }
+}
+```
+
+<img src="./applet/app4.png">
+
+#### Generate a triangular wave on applet.
+
+```java
+import java.awt.*;
+import java.applet.*;
+
+/*<applet code="Test8.class" height="150" width="500"></applet>*/
+
+public class Test8 extends Applet {
+    public void paint(Graphics g) {
+        Dimension d = getSize();
+        int width = d.width;
+        int height = d.height;
+        int amplitude = 100;
+        int wavelength = 50;
+
+        setForeground(Color.blue);
+
+        int[] xPoints = new int[width];
+        int[] yPoints = new int[width];
+
+        for (int i = 0; i < width; i++) {
+            xPoints[i] = i;
+            yPoints[i] = height / 2 + (int) (amplitude * Math.abs((i % wavelength) / (double) wavelength - 0.5) * 2 - amplitude / 2);
+        }
+
+        g.drawPolyline(xPoints, yPoints, width);
+    }
+}
+```
+
+<img src="./applet/app5.png">
