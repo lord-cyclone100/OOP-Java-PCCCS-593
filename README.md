@@ -2314,7 +2314,6 @@ class MyRunnable implements Runnable{
 
 public class Test{
     public static void main(String[] args){
-        Scanner scanner = new Scanner(System.in);
 
         MyRunnable r = new MyRunnable();
 
@@ -2335,6 +2334,52 @@ public class Test{
         t3.start();
         t4.start();
         t5.start();
+    }
+}
+```
+
+#### Implement program of locking of common method by several threads. (Using the keyword ‘synchronized’).
+
+```java
+import java.util.Scanner;
+
+class SharedLock{
+    public synchronized void displayMessage(String name){
+        System.out.print("Hello ");
+        try{
+            Thread.sleep(1000);
+        }
+        catch(InterruptedException ie){}
+        System.out.println(name);
+    }
+}
+
+class MyThread extends Thread{
+    SharedLock sl;
+    String name;
+    MyThread(SharedLock sl, String name){
+        this.sl = sl;
+        this.name = name;
+    }
+
+    public void run(){
+        sl.displayMessage(name);
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+
+        SharedLock s = new SharedLock();
+
+        MyThread t1 = new MyThread(s, "Thread 1");
+        MyThread t2 = new MyThread(s, "Thread 2");
+        MyThread t3 = new MyThread(s, "Thread 3");
+
+        t1.start();
+        t2.start();
+        t3.start();
+        
     }
 }
 ```
