@@ -2639,3 +2639,34 @@ public class Test8 extends Applet {
 ```
 
 <img src="./applet/app5.png">
+
+#### Display table of 2 using font Tahoma with size 25 and bold letters on a black rectangular area with white font.
+
+```java
+import java.awt.*;
+import java.applet.*;
+
+/*<applet code="Test9.class" height=500 width=400></applet>*/
+
+public class Test9 extends Applet{
+    public void paint(Graphics g){
+        // setForeground(Color.white);
+        Font font = new Font("Tahoma", Font.BOLD, 25);
+        g.setFont(font);
+        Dimension d = getSize();
+        int xc[] = {50,350,350,50};
+        int yc[] = {50,50,450,450};
+
+        Color c = new Color(0,0,0);
+        g.setColor(c);
+
+        g.fillPolygon(xc,yc,4);
+
+        g.setColor(Color.white);
+        for(int i=1;i<=10;i++){
+            g.drawString("2 x "+i+" = "+2*i,120,100+30*i);
+        }
+        
+    }
+}
+```
